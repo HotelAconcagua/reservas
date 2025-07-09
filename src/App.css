@@ -1,0 +1,667 @@
+/* src/App.css */
+
+/* Variables CSS para colores y espaciado */
+:root { /* Define variables CSS globales */
+    /* Colores */
+    --color-dark-bg: #1a1a1a; /* Color de fondo oscuro principal */
+    --color-medium-dark-bg: #2a2a2a; /* Color de fondo oscuro medio */
+    --color-darker-gray: #333; /* Gris más oscuro */
+    --color-dark-gray: #3a3a3a; /* Gris oscuro */
+    --color-medium-gray: #444; /* Gris medio */
+    --color-light-gray: #a0a0a0; /* Gris claro */
+    --color-lighter-gray: #c0c0c0; /* Gris más claro */
+    --color-white-text: #f0f0f0; /* Color de texto blanco */
+    --color-almost-white: #e0e0e0; /* Blanco casi puro */
+
+    --color-primary-cyan: #00bcd4; /* Color cian principal */
+    --color-primary-cyan-hover: #0097a7; /* Cian al pasar el ratón */
+    --color-success: #28a745; /* Color para mensajes de éxito */
+    --color-error: #dc3545; /* Color para mensajes de error */
+    --color-error-darker: #c82333; /* Rojo más oscuro para error */
+    --color-cancel: #6c757d; /* Color para botón de cancelar */
+    --color-cancel-hover: #5a6268; /* Gris al pasar el ratón para cancelar */
+    --color-red-shadow: rgba(220, 53, 69, 0.3); /* Sombra roja */
+    --color-red-shadow-hover: rgba(220, 53, 69, 0.4); /* Sombra roja al pasar el ratón */
+    --color-cyan-shadow: rgba(0, 188, 212, 0.3); /* Sombra cian */
+    --color-cyan-shadow-hover: rgba(0, 188, 212, 0.4); /* Sombra cian al pasar el ratón */
+    --color-gray-shadow: rgba(108, 117, 125, 0.3); /* Sombra gris */
+
+    /* Espaciado */
+    --spacing-xs: 0.4rem; /* Espaciado extra pequeño */
+    --spacing-sm: 0.5rem; /* Espaciado pequeño */
+    --spacing-md: 1rem; /* Espaciado medio */
+    --spacing-lg: 1.5rem; /* Espaciado grande */
+    --spacing-xl: 2rem; /* Espaciado extra grande */
+    --spacing-xxl: 2.5rem; /* Espaciado doble extra grande */
+    --spacing-xxxl: 40px; /* Espaciado triple extra grande (para padding principal) */
+
+    /* Bordes y radios */
+    --border-radius-sm: 5px; /* Radio de borde pequeño */
+    --border-radius-md: 8px; /* Radio de borde medio */
+    --border-radius-lg: 10px; /* Radio de borde grande */
+    --border-radius-xl: 12px; /* Radio de borde extra grande */
+    --border-radius-xxl: 15px; /* Radio de borde doble extra grande */
+    --border-thin: 1px solid var(--color-medium-gray); /* Borde delgado */
+    --border-dashed: 1px dashed var(--color-medium-gray); /* Borde punteado */
+    --border-dashed-dark: 1px dashed var(--color-dark-gray); /* Borde punteado oscuro */
+    --border-bottom-dashed: 1px dashed var(--color-medium-dark-bg); /* Borde inferior punteado */
+    --border-bottom-solid: 1px solid #666; /* Borde inferior sólido */
+}
+
+/* Estilos Generales */
+body { /* Estilos para el cuerpo de la página */
+    margin: 0; /* Elimina el margen por defecto */
+    font-family: 'Inter', sans-serif; /* Fuente principal */
+    -webkit-font-smoothing: antialiased; /* Suavizado de fuentes para WebKit */
+    -moz-osx-font-smoothing: grayscale; /* Suavizado de fuentes para Firefox */
+    background-color: var(--color-dark-bg); /* Color de fondo */
+    color: var(--color-white-text); /* Color de texto por defecto */
+    display: flex; /* Usa flexbox para centrar contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 100vh; /* Altura mínima de la ventana */
+    padding: 20px; /* Relleno alrededor del contenido */
+    box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
+}
+
+.loading-container { /* Contenedor para el mensaje de carga */
+    display: flex; /* Usa flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 100vh; /* Ocupa toda la altura de la ventana */
+    background-color: var(--color-dark-bg); /* Color de fondo */
+}
+
+.loading-text { /* Estilo para el texto de carga */
+    font-size: 1.25rem; /* Tamaño de fuente */
+    color: var(--color-light-gray); /* Color de texto */
+}
+
+/* Contenedor Principal de la Aplicación */
+.main-container { /* Contenedor principal de la aplicación */
+    position: relative; /* Posicionamiento relativo */
+    display: flex; /* Usa flexbox */
+    flex-direction: column; /* Apila el contenido verticalmente */
+    justify-content: flex-start; /* Alinea al inicio verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    min-height: 100vh; /* Altura mínima de la ventana */
+    background-color: var(--color-dark-bg); /* Color de fondo */
+    padding: 20px; /* Relleno */
+    width: 100%; /* Ancho completo */
+    box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
+}
+
+/* Contenedor del Formulario */
+.form-wrapper { /* Contenedor del formulario */
+    background-color: var(--color-medium-dark-bg); /* Color de fondo */
+    padding: var(--spacing-xxxl); /* Relleno */
+    border-radius: var(--border-radius-xxl); /* Bordes redondeados */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra */
+    width: 100%; /* Ancho completo */
+    max-width: 700px; /* Ancho máximo */
+    border: var(--border-thin); /* Borde */
+    box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
+    margin-bottom: var(--spacing-xxxl); /* Espacio inferior */
+}
+
+.form-title { /* Título del formulario */
+    font-size: 2.5rem; /* Tamaño de fuente */
+    font-weight: 800; /* Peso de fuente extra bold */
+    text-align: center; /* Alineación de texto central */
+    color: var(--color-almost-white); /* Color de texto */
+    margin-bottom: var(--spacing-xl); /* Margen inferior */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra de texto */
+    display: flex; /* Usa flexbox */
+    flex-direction: column; /* Apila el contenido verticalmente */
+    line-height: 1.2; /* Altura de línea */
+}
+
+.form-title .subtitle { /* Subtítulo del formulario */
+    font-size: 1.2rem; /* Tamaño de fuente */
+    font-weight: 600; /* Peso de fuente semi-bold */
+    color: var(--color-light-gray); /* Color de texto */
+    margin-top: var(--spacing-sm); /* Margen superior */
+}
+
+.user-id-display { /* Contenedor para mostrar el ID de usuario */
+    font-size: 0.875rem; /* Tamaño de fuente */
+    color: var(--color-light-gray); /* Color de texto */
+    text-align: center; /* Alineación de texto central */
+    margin-bottom: var(--spacing-lg); /* Margen inferior */
+}
+
+.user-id-value { /* Valor del ID de usuario */
+    font-family: 'monospace', monospace; /* Fuente monoespaciada */
+    background-color: var(--color-dark-gray); /* Color de fondo */
+    padding: 4px 8px; /* Relleno */
+    border-radius: var(--border-radius-sm); /* Bordes redondeados */
+    color: var(--color-lighter-gray); /* Color de texto */
+}
+
+/* Flecha indicadora de scroll */
+.scroll-down-arrow { /* Estilo de la flecha de scroll */
+    position: absolute; /* Posicionamiento absoluto */
+    left: 20px; /* Distancia desde la izquierda */
+    top: 50%; /* Centrado vertical */
+    transform: translateY(-50%); /* Ajuste de centrado */
+    width: 0; /* Ancho cero */
+    height: 0; /* Altura cero */
+    border-left: 10px solid transparent; /* Borde izquierdo transparente */
+    border-right: 10px solid transparent; /* Borde derecho transparente */
+    border-top: 15px solid var(--color-primary-cyan); /* Borde superior (la flecha) */
+    opacity: 0.6; /* Opacidad */
+    animation: bounce 2s infinite; /* Animación de rebote */
+    z-index: 10; /* Índice Z para superposición */
+}
+
+@keyframes bounce { /* Definición de la animación de rebote */
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(-50%); /* Posición inicial y final */
+    }
+    40% {
+        transform: translateY(-50%) translateY(-10px); /* Rebote hacia arriba */
+    }
+    60% {
+        transform: translateY(-50%) translateY(-5px); /* Rebote más corto */
+    }
+}
+
+@media (max-width: 768px) { /* Media query para pantallas pequeñas */
+    .scroll-down-arrow { /* Ajuste de la flecha en pantallas pequeñas */
+        left: 10px; /* Mueve la flecha más a la izquierda */
+    }
+}
+
+/* Grupos de Formulario y Campos */
+.form-section-grid { /* Contenedor de la sección de formulario en grilla */
+    display: grid; /* Usa CSS Grid */
+    grid-template-columns: 1fr; /* Una columna por defecto */
+    gap: var(--spacing-lg); /* Espacio entre elementos de la grilla */
+    margin-bottom: var(--spacing-xl); /* Margen inferior */
+}
+
+@media (min-width: 768px) { /* Media query para pantallas medianas y grandes */
+    .form-section-grid { /* Ajuste de la grilla en pantallas más grandes */
+        grid-template-columns: 1fr 1fr; /* Dos columnas */
+    }
+    .form-group.full-width { /* Grupo de formulario que ocupa todo el ancho */
+        grid-column: span 2; /* Ocupa dos columnas */
+    }
+}
+
+.form-group { /* Grupo de un campo de formulario (label + input) */
+    margin-bottom: 0; /* Elimina el margen inferior por defecto */
+}
+
+.form-label { /* Etiqueta de un campo de formulario */
+    display: block; /* Ocupa todo el ancho disponible */
+    margin-bottom: var(--spacing-sm); /* Margen inferior */
+    font-weight: 600; /* Peso de fuente semi-bold */
+    color: var(--color-lighter-gray); /* Color de texto */
+    font-size: 0.95rem; /* Tamaño de fuente */
+}
+
+.form-input { /* Campos de entrada del formulario */
+    width: 100%; /* Ancho completo */
+    padding: 0.75rem var(--spacing-md); /* Relleno */
+    border: var(--border-thin); /* Borde */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    font-size: var(--spacing-md); /* Tamaño de fuente */
+    box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
+    background-color: var(--color-medium-gray); /* Color de fondo */
+    color: var(--color-almost-white); /* Color de texto */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+}
+
+.form-input:focus { /* Estilo al enfocar un input */
+    outline: none; /* Elimina el contorno por defecto */
+    border-color: var(--color-primary-cyan); /* Color del borde */
+    box-shadow: 0 0 0 3px var(--color-cyan-shadow); /* Sombra */
+    background-color: var(--color-dark-gray); /* Color de fondo */
+}
+
+/* Nuevos estilos para mensajes de error debajo del input */
+.input-error-message { /* Mensaje de error debajo del input */
+    color: var(--color-error); /* Color de texto */
+    font-size: 0.85rem; /* Tamaño de fuente */
+    margin-top: var(--spacing-xs); /* Margen superior */
+    padding-left: var(--spacing-sm); /* Relleno izquierdo */
+    font-weight: 500; /* Peso de fuente medio */
+}
+
+/* Separador */
+.separator { /* Línea separadora */
+    border-top: 2px dashed var(--color-medium-gray); /* Borde superior punteado */
+    margin: var(--spacing-xxl) 0; /* Margen superior e inferior */
+}
+
+/* Sección de Huéspedes Dinámica */
+.guest-section { /* Sección de cada huésped */
+    background-color: var(--color-darker-gray); /* Color de fondo */
+    padding: var(--spacing-xl); /* Relleno */
+    border-radius: var(--border-radius-xl); /* Bordes redondeados */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+    margin-bottom: var(--spacing-lg); /* Margen inferior */
+    border: var(--border-thin); /* Borde */
+}
+
+.guest-title { /* Título de la sección de huésped */
+    font-size: 1.375rem; /* Tamaño de fuente */
+    font-weight: 700; /* Peso de fuente bold */
+    color: var(--color-primary-cyan); /* Color de texto */
+    margin-bottom: 1.25rem; /* Margen inferior */
+    text-align: center; /* Alineación de texto central */
+}
+
+/* Botón de Envío */
+.submit-button { /* Botón de envío del formulario */
+    width: 100%; /* Ancho completo */
+    padding: 1rem 1.5rem; /* Relleno */
+    background-color: var(--color-primary-cyan); /* Color de fondo */
+    color: white; /* Color de texto */
+    border: none; /* Sin borde */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    font-size: 1.25rem; /* Tamaño de fuente */
+    font-weight: 700; /* Peso de fuente bold */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+    box-shadow: 0 5px 15px var(--color-cyan-shadow); /* Sombra */
+    letter-spacing: 0.05em; /* Espaciado entre letras */
+}
+
+.submit-button:hover { /* Estilo del botón al pasar el ratón */
+    background-color: var(--color-primary-cyan-hover); /* Color de fondo */
+    transform: translateY(-3px); /* Desplazamiento hacia arriba */
+    box-shadow: 0 8px 20px var(--color-cyan-shadow-hover); /* Sombra */
+}
+
+.submit-button:active { /* Estilo del botón al hacer clic */
+    transform: translateY(0); /* Vuelve a la posición original */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.submit-button:disabled { /* Estilo del botón deshabilitado */
+    background-color: #555; /* Color de fondo */
+    cursor: not-allowed; /* Cursor de no permitido */
+    box-shadow: none; /* Sin sombra */
+    transform: none; /* Sin transformación */
+}
+
+/* Mensajes de Éxito/Error */
+.message-display { /* Contenedor de mensajes de éxito/error */
+    margin-top: var(--spacing-lg); /* Margen superior */
+    margin-bottom: var(--spacing-xl); /* Margen inferior */
+    padding: var(--spacing-md); /* Relleno */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    text-align: center; /* Alineación de texto central */
+    font-weight: 600; /* Peso de fuente semi-bold */
+    font-size: var(--spacing-md); /* Tamaño de fuente */
+}
+
+.message-display.success { /* Estilo para mensaje de éxito */
+    background-color: var(--color-success); /* Color de fondo */
+    color: white; /* Color de texto */
+}
+
+.message-display.error { /* Estilo para mensaje de error */
+    background-color: var(--color-error); /* Color de fondo */
+    color: white; /* Color de texto */
+}
+
+/* Estilos para el calendario (input type="date") */
+input[type="date"]::-webkit-calendar-picker-indicator { /* Indicador de calendario */
+    filter: invert(1); /* Invierte los colores */
+    cursor: pointer; /* Cursor de puntero */
+}
+
+/* Opcional: Estilos para el scrollbar en navegadores compatibles */
+::-webkit-scrollbar { /* Barra de desplazamiento */
+    width: 10px; /* Ancho de la barra */
+}
+
+::-webkit-scrollbar-track { /* Pista de la barra de desplazamiento */
+    background: var(--color-medium-dark-bg); /* Color de fondo */
+    border-radius: var(--border-radius-lg); /* Bordes redondeados */
+}
+
+::-webkit-scrollbar-thumb { /* Pulgar de la barra de desplazamiento */
+    background: var(--color-primary-cyan); /* Color de fondo */
+    border-radius: var(--border-radius-lg); /* Bordes redondeados */
+}
+
+::-webkit-scrollbar-thumb:hover { /* Pulgar de la barra al pasar el ratón */
+    background: var(--color-primary-cyan-hover); /* Color de fondo */
+}
+
+/* Estilos para la sección de la lista de reservas */
+.reservas-list-section { /* Sección de la lista de reservas */
+    background-color: var(--color-medium-dark-bg); /* Color de fondo */
+    padding: var(--spacing-xxxl); /* Relleno */
+    border-radius: var(--border-radius-xxl); /* Bordes redondeados */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra */
+    width: 100%; /* Ancho completo */
+    max-width: 1600px; /* Ancho máximo */
+    border: var(--border-thin); /* Borde */
+    box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
+    margin-top: 20px; /* Margen superior */
+    overflow-x: auto; /* Permite scroll horizontal si el contenido es muy ancho */
+}
+
+.reservas-list-title { /* Título de la lista de reservas */
+    font-size: var(--spacing-xl); /* Tamaño de fuente */
+    font-weight: 700; /* Peso de fuente bold */
+    text-align: center; /* Alineación de texto central */
+    color: var(--color-almost-white); /* Color de texto */
+    margin-bottom: var(--spacing-lg); /* Margen inferior */
+}
+
+.no-reservas-message { /* Mensaje cuando no hay reservas */
+    text-align: center; /* Alineación de texto central */
+    color: var(--color-light-gray); /* Color de texto */
+    font-style: italic; /* Estilo de fuente cursiva */
+    padding: var(--spacing-xl); /* Relleno */
+    border: var(--border-dashed); /* Borde punteado */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+}
+
+/* Contenedor para todas las tarjetas de reserva */
+.reservas-grid-wrapper { /* Contenedor de las tarjetas de reserva en grilla */
+    display: grid; /* Usa CSS Grid */
+    grid-template-columns: 1fr; /* Una columna por defecto */
+    gap: 30px; /* Espacio entre cada tarjeta */
+}
+
+/* Estilo para cada tarjeta de reserva individual */
+.reserva-card { /* Tarjeta de reserva individual */
+    background-color: var(--color-darker-gray); /* Color de fondo */
+    padding: 25px; /* Relleno */
+    border-radius: var(--border-radius-lg); /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+    border: var(--border-thin); /* Borde */
+    color: var(--color-e0e0e0); /* Color de texto */
+    display: flex; /* Usa flexbox */
+    flex-direction: column; /* Apila las secciones de info y huéspedes */
+    gap: 20px; /* Espacio entre secciones */
+    min-width: 900px; /* Ancho mínimo para las 3 columnas */
+}
+
+/* Estilo para la sección de información principal de la reserva (grilla de 3 columnas) */
+.reserva-main-info { /* Sección de información principal */
+    display: grid; /* Usa CSS Grid */
+    grid-template-columns: repeat(3, 1fr); /* Forzar 3 columnas de igual ancho */
+    gap: 15px; /* Espacio entre elementos */
+    padding-bottom: var(--spacing-xl); /* Relleno inferior */
+    border-bottom: var(--border-bottom-dashed); /* Borde inferior punteado */
+}
+
+.reserva-main-info p { /* Párrafos dentro de la información principal */
+    margin: 0; /* Elimina el margen */
+    line-height: 1.4; /* Altura de línea */
+}
+
+.reserva-main-info strong { /* Texto en negrita dentro de la información principal */
+    color: var(--color-primary-cyan); /* Color de texto */
+}
+
+.reserva-id { /* ID de la reserva */
+    font-family: 'monospace', monospace; /* Fuente monoespaciada */
+    font-size: 0.85rem; /* Tamaño de fuente */
+    color: var(--color-light-gray); /* Color de texto */
+    word-break: break-all; /* Rompe palabras largas */
+}
+
+/* Estilo para el enlace de WhatsApp */
+.whatsapp-link { /* Enlace de WhatsApp */
+    color:rgba(0, 255, 128, 0.938); /* Color del enlace */
+    text-decoration: none; /* Elimina el subrayado */
+    transition: color 0.2s ease; /* Transición suave de color */
+}
+
+.whatsapp-link:hover { /* Estilo del enlace al pasar el ratón */
+    color: rgb(102, 255, 0);  /* Color del enlace al pasar el ratón */
+    text-decoration: underline; /* Añade subrayado al pasar el ratón */
+}
+
+
+/* Estilo para la sección de huéspedes */
+.huespedes-section-title { /* Título de la sección de huéspedes */
+    font-size: var(--spacing-lg); /* Tamaño de fuente */
+    font-weight: 700; /* Peso de fuente bold */
+    color: var(--color-primary-cyan); /* Color de texto */
+    margin-bottom: var(--spacing-md); /* Margen inferior */
+    text-align: center; /* Alineación de texto central */
+}
+
+/* Grilla para los detalles de los huéspedes (3 columnas) */
+.huespedes-grid { /* Contenedor de la grilla de huéspedes */
+    display: grid; /* Usa CSS Grid */
+    grid-template-columns: repeat(3, 1fr); /* Forzar 3 columnas de igual ancho */
+    gap: var(--spacing-xl); /* Espacio entre tarjetas de huésped */
+}
+
+/* Estilo para cada tarjeta de huésped individual */
+.huesped-card { /* Tarjeta de huésped individual */
+    background-color: var(--color-medium-gray); /* Color de fondo */
+    padding: var(--spacing-xl); /* Relleno */
+    border-radius: var(--border-radius-lg); /* Bordes redondeados */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Sombra */
+    border: 1px solid #555; /* Borde */
+}
+
+.huesped-card h5 { /* Título de la tarjeta de huésped */
+    font-size: 1.1rem; /* Tamaño de fuente */
+    font-weight: 600; /* Peso de fuente semi-bold */
+    color: var(--color-almost-white); /* Color de texto */
+    margin-bottom: var(--spacing-md); /* Margen inferior */
+    text-align: center; /* Alineación de texto central */
+    border-bottom: var(--border-bottom-solid); /* Borde inferior sólido */
+    padding-bottom: var(--spacing-sm); /* Relleno inferior */
+}
+
+.huesped-card p { /* Párrafos dentro de la tarjeta de huésped */
+    margin: 0; /* Elimina el margen */
+    font-size: 0.9rem; /* Tamaño de fuente */
+    line-height: 1.5; /* Altura de línea */
+}
+
+.huesped-card strong { /* Texto en negrita dentro de la tarjeta de huésped */
+    color: var(--color-primary-cyan); /* Color de texto */
+}
+
+/* Estilos para los botones de navegación */
+.navigation-buttons { /* Contenedor de los botones de navegación */
+    display: flex; /* Usa flexbox */
+    gap: 15px; /* Espacio entre los botones */
+    margin-bottom: 30px; /* Espacio inferior */
+    width: 100%; /* Ancho completo */
+    max-width: 700px; /* Ancho máximo */
+    justify-content: center; /* Centra horizontalmente */
+}
+
+.nav-button { /* Botón de navegación */
+    padding: 0.8rem var(--spacing-lg); /* Relleno */
+    background-color: var(--color-dark-gray); /* Color de fondo */
+    color: var(--color-almost-white); /* Color de texto */
+    border: var(--border-thin); /* Borde */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    font-size: var(--spacing-md); /* Tamaño de fuente */
+    font-weight: 600; /* Peso de fuente semi-bold */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transiciones suaves */
+    flex-grow: 1; /* Permite que el botón crezca */
+    max-width: 200px; /* Ancho máximo */
+}
+
+.nav-button:hover { /* Estilo del botón de navegación al pasar el ratón */
+    background-color: var(--color-medium-gray); /* Color de fondo */
+    border-color: var(--color-primary-cyan); /* Color del borde */
+}
+
+.nav-button.active { /* Estilo del botón de navegación activo */
+    background-color: var(--color-primary-cyan); /* Color de fondo */
+    border-color: var(--color-primary-cyan); /* Color del borde */
+    color: white; /* Color de texto */
+    box-shadow: 0 4px 10px var(--color-cyan-shadow); /* Sombra */
+}
+
+.nav-button.active:hover { /* Estilo del botón de navegación activo al pasar el ratón */
+    background-color: var(--color-primary-cyan-hover); /* Color de fondo */
+}
+
+/* Nuevos estilos para el contenedor de contraseña */
+.password-input-container { /* Contenedor del input de contraseña */
+    background-color: var(--color-medium-dark-bg); /* Color de fondo */
+    padding: 30px; /* Relleno */
+    border-radius: var(--border-radius-xxl); /* Bordes redondeados */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra */
+    width: 100%; /* Ancho completo */
+    max-width: 400px; /* Ancho máximo */
+    border: var(--border-thin); /* Borde */
+    box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
+    margin-top: 20px; /* Margen superior */
+    text-align: center; /* Alineación de texto central */
+}
+
+.password-input-container .form-label { /* Etiqueta del campo de contraseña */
+    margin-bottom: var(--spacing-md); /* Margen inferior */
+    font-size: var(--spacing-md); /* Tamaño de fuente */
+}
+
+.password-input-container .form-input { /* Input de contraseña */
+    margin-bottom: var(--spacing-md); /* Margen inferior */
+}
+
+.password-input-container .input-error-message { /* Mensaje de error de contraseña */
+    margin-bottom: var(--spacing-md); /* Margen inferior */
+}
+
+.password-submit-button { /* Botón de envío de contraseña */
+    margin-top: var(--spacing-md); /* Margen superior */
+    width: auto; /* Ancho automático */
+    padding: 0.75rem var(--spacing-lg); /* Relleno */
+    align-self: center; /* Centra el botón */
+}
+
+/* Estilos para el botón de eliminar reserva */
+.delete-reserva-button { /* Botón de eliminar reserva */
+    background-color: var(--color-error); /* Color de fondo */
+    color: white; /* Color de texto */
+    border: none; /* Sin borde */
+    padding: 0.75rem var(--spacing-lg); /* Relleno */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    font-size: var(--spacing-md); /* Tamaño de fuente */
+    font-weight: 600; /* Peso de fuente semi-bold */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+    margin-top: var(--spacing-xl); /* Margen superior */
+    width: 100%; /* Ancho completo */
+    box-shadow: 0 4px 10px var(--color-red-shadow); /* Sombra */
+}
+
+.delete-reserva-button:hover { /* Estilo del botón de eliminar al pasar el ratón */
+    background-color: var(--color-error-darker); /* Color de fondo */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba */
+    box-shadow: 0 6px 12px var(--color-red-shadow-hover); /* Sombra */
+}
+
+.delete-reserva-button:active { /* Estilo del botón de eliminar al hacer clic */
+    transform: translateY(0); /* Vuelve a la posición original */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+/* Estilos para el modal de confirmación */
+.modal-overlay { /* Fondo oscuro del modal */
+    position: fixed; /* Posicionamiento fijo */
+    top: 0; /* Desde la parte superior */
+    left: 0; /* Desde la izquierda */
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    display: flex; /* Usa flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    z-index: 1000; /* Asegura que esté por encima de todo */
+}
+
+.modal-content { /* Contenido del modal */
+    background-color: var(--color-medium-dark-bg); /* Color de fondo */
+    padding: 30px; /* Relleno */
+    border-radius: var(--border-radius-xxl); /* Bordes redondeados */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Sombra */
+    text-align: center; /* Alineación de texto central */
+    max-width: 400px; /* Ancho máximo */
+    width: 90%; /* Ancho responsivo */
+    border: var(--border-thin); /* Borde */
+}
+
+.modal-content h3 { /* Título del modal */
+    font-size: 1.8rem; /* Tamaño de fuente */
+    color: var(--color-almost-white); /* Color de texto */
+    margin-bottom: var(--spacing-md); /* Margen inferior */
+}
+
+.modal-content p { /* Párrafo del modal */
+    font-size: 1.1rem; /* Tamaño de fuente */
+    color: var(--color-lighter-gray); /* Color de texto */
+    margin-bottom: var(--spacing-lg); /* Margen inferior */
+}
+
+.modal-actions { /* Contenedor de acciones del modal */
+    display: flex; /* Usa flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    gap: 15px; /* Espacio entre botones */
+}
+
+.modal-button { /* Botón del modal */
+    padding: 0.75rem var(--spacing-lg); /* Relleno */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    font-size: var(--spacing-md); /* Tamaño de fuente */
+    font-weight: 600; /* Peso de fuente semi-bold */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+    flex-grow: 1; /* Permite que el botón crezca */
+    max-width: 150px; /* Ancho máximo */
+}
+
+.modal-button.confirm { /* Botón de confirmar en modal */
+    background-color: var(--color-error); /* Color de fondo */
+    color: white; /* Color de texto */
+    box-shadow: 0 4px 10px var(--color-red-shadow); /* Sombra */
+}
+
+.modal-button.confirm:hover { /* Estilo del botón de confirmar al pasar el ratón */
+    background-color: var(--color-error-darker); /* Color de fondo */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba */
+}
+
+.modal-button.cancel { /* Botón de cancelar en modal */
+    background-color: var(--color-cancel); /* Color de fondo */
+    color: white; /* Color de texto */
+    box-shadow: 0 4px 10px var(--color-gray-shadow); /* Sombra */
+}
+
+.modal-button.cancel:hover { /* Estilo del botón de cancelar al pasar el ratón */
+    background-color: var(--color-cancel-hover); /* Color de fondo */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba */
+}
+
+/* Mensajes de eliminación */
+.delete-message-display { /* Mensaje de eliminación */
+    margin-top: var(--spacing-lg); /* Margen superior */
+    margin-bottom: var(--spacing-xl); /* Margen inferior */
+    padding: var(--spacing-md); /* Relleno */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    text-align: center; /* Alineación de texto central */
+    font-weight: 600; /* Peso de fuente semi-bold */
+    font-size: var(--spacing-md); /* Tamaño de fuente */
+}
+
+.delete-message-display.success { /* Mensaje de eliminación exitosa */
+    background-color: var(--color-success); /* Verde oscuro */
+    color: white; /* Color de texto */
+}
+
+.delete-message-display.error { /* Mensaje de error de eliminación */
+    background-color: var(--color-error); /* Rojo oscuro */
+    color: white; /* Color de texto */
+}
